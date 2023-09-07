@@ -1,0 +1,82 @@
+apiVersion: sparkoperator.hpe.com/v1beta2
+kind: SparkApplication
+metadata:
+  creationTimestamp: 2023-09-07T04:51:15Z
+  generation: 1
+  labels:
+    hpe-ezua/app: spark
+    hpe-ezua/type: app-service-user
+  name: t0-table
+  namespace: spark
+  resourceVersion: "5060843"
+  uid: 01ed5fb9-1bf4-4c10-b20f-a9360571e642
+spec:
+  driver:
+    coreLimit: "1"
+    cores: 1
+    labels:
+      version: 3.4.0
+    memory: 4G
+    serviceAccount: hpe-spark
+    volumeMounts:
+      - mountPath: /opt/mapr/spark/sparkhs-eventlog-storage
+        name: sparkhs-eventlog-storage
+      - mountPath: /mounts/imguru-volume
+        name: imguru-volume
+      - mountPath: /mounts/shared-volume
+        name: shared-volume
+  executor:
+    coreLimit: "1"
+    cores: 1
+    instances: 1
+    labels:
+      version: 3.4.0
+    memory: 32G
+    serviceAccount: hpe-spark
+    volumeMounts:
+      - mountPath: /mounts/imguru-volume
+        name: imguru-volume
+      - mountPath: /mounts/shared-volume
+        name: shared-volume
+  image: gcr.io/mapr-252711/spark-py-3.4.0:v3.4.0
+  imagePullPolicy: Always
+  imagePullSecrets:
+    - imagepull
+  mainApplicationFile: local:///mounts/imguru-volume/spark/t0_table.py
+  mode: cluster
+  restartPolicy:
+    type: Never
+  sparkConf:
+    spark.eventLog.dir: file:///opt/mapr/spark/sparkhs-eventlog-storage
+    spark.eventLog.enabled: "true"
+    spark.executorEnv.PRESTO_ACCESS_TOKEN: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJxS0hXWWw5cGVONlNxQ25WeGlZM0tGaTIwaHpkb0dRNFpJWTd3NUhITXFvIn0.eyJleHAiOjE2OTQ2NjQ1MDUsImlhdCI6MTY5NDA1OTcxMCwiYXV0aF90aW1lIjoxNjk0MDU5NzA1LCJqdGkiOiI0NDc0MzY5MC04N2VjLTQwNDMtOGRjMi1jOTg0YTc0MTQ5ZTkiLCJpc3MiOiJodHRwczovL2tleWNsb2FrLmV6bWVyYWwuZXRldmVycy5jb20vcmVhbG1zL1VBIiwiYXVkIjoidWEiLCJzdWIiOiI3NDkzYzQ5OC0yOWE5LTQ4MjgtOTUyNi0xYTgwMGRkN2UwMWUiLCJ0eXAiOiJJRCIsImF6cCI6InVhIiwibm9uY2UiOiJKbGNVcVZpX2lBTWhGYUJHMnBMWUhrbnZCUWdSNTZITWNWTTFhUmxKZUFzIiwic2Vzc2lvbl9zdGF0ZSI6ImRiMzMxZTYxLTRhZDEtNGNmYy1iMTc3LTU0ZThkZTdkNzFjZiIsImF0X2hhc2giOiJFS0YwZWhibXE2b3hnaHU1cjFNVG5nIiwiYWNyIjoiMSIsInNpZCI6ImRiMzMxZTYxLTRhZDEtNGNmYy1iMTc3LTU0ZThkZTdkNzFjZiIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6ImltZ3VydSBpbWd1cnUiLCJncm91cHMiOlsidWEtZW5hYmxlZCIsIm9mZmxpbmVfYWNjZXNzIiwiYWRtaW4iLCJ1bWFfYXV0aG9yaXphdGlvbiIsImRlZmF1bHQtcm9sZXMtdWEiXSwicHJlZmVycmVkX3VzZXJuYW1lIjoiaW1ndXJ1IiwiZ2l2ZW5fbmFtZSI6ImltZ3VydSIsInBvc2l4X3VzZXJuYW1lIjoiaW1ndXJ1IiwiZmFtaWx5X25hbWUiOiJpbWd1cnUiLCJlbWFpbCI6ImltZ3VydUBpbWd1cnUuY29tIn0.iXkjJOC0wfeijNEwWaOzGejl0Vp1KR758LJHaHbascF-BMVXCtaW_mRjxuuoYA83ffFg9hCVpT3NoJqvO2Pc4O8kiFBdtwSn4ijA0a2nx9AxZdNYfYZzkBbewHgw1MUoiGLdNU7__Nq-0OeYewc2LOdUNiMNnvPO-pd2JpGwmcexIZxMsuDOMdSZBtaPhUhoqArSK2lsgXGJmxVP2oywFUhUzMdkuPed0mi0TwgVl1P8mFngwZQK4p1FZX9i6SHWkN_dlZc4IUBNljfhwbfSuOetppWKFwNYiYT4qa0y5YSK9Lz8lNK32uqbuuJfz6z20_jJP2H--xQXADuMI3slGA
+    spark.kubernetes.driverEnv.PRESTO_ACCESS_TOKEN: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJxS0hXWWw5cGVONlNxQ25WeGlZM0tGaTIwaHpkb0dRNFpJWTd3NUhITXFvIn0.eyJleHAiOjE2OTQ2NjQ1MDUsImlhdCI6MTY5NDA1OTcxMCwiYXV0aF90aW1lIjoxNjk0MDU5NzA1LCJqdGkiOiI0NDc0MzY5MC04N2VjLTQwNDMtOGRjMi1jOTg0YTc0MTQ5ZTkiLCJpc3MiOiJodHRwczovL2tleWNsb2FrLmV6bWVyYWwuZXRldmVycy5jb20vcmVhbG1zL1VBIiwiYXVkIjoidWEiLCJzdWIiOiI3NDkzYzQ5OC0yOWE5LTQ4MjgtOTUyNi0xYTgwMGRkN2UwMWUiLCJ0eXAiOiJJRCIsImF6cCI6InVhIiwibm9uY2UiOiJKbGNVcVZpX2lBTWhGYUJHMnBMWUhrbnZCUWdSNTZITWNWTTFhUmxKZUFzIiwic2Vzc2lvbl9zdGF0ZSI6ImRiMzMxZTYxLTRhZDEtNGNmYy1iMTc3LTU0ZThkZTdkNzFjZiIsImF0X2hhc2giOiJFS0YwZWhibXE2b3hnaHU1cjFNVG5nIiwiYWNyIjoiMSIsInNpZCI6ImRiMzMxZTYxLTRhZDEtNGNmYy1iMTc3LTU0ZThkZTdkNzFjZiIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6ImltZ3VydSBpbWd1cnUiLCJncm91cHMiOlsidWEtZW5hYmxlZCIsIm9mZmxpbmVfYWNjZXNzIiwiYWRtaW4iLCJ1bWFfYXV0aG9yaXphdGlvbiIsImRlZmF1bHQtcm9sZXMtdWEiXSwicHJlZmVycmVkX3VzZXJuYW1lIjoiaW1ndXJ1IiwiZ2l2ZW5fbmFtZSI6ImltZ3VydSIsInBvc2l4X3VzZXJuYW1lIjoiaW1ndXJ1IiwiZmFtaWx5X25hbWUiOiJpbWd1cnUiLCJlbWFpbCI6ImltZ3VydUBpbWd1cnUuY29tIn0.iXkjJOC0wfeijNEwWaOzGejl0Vp1KR758LJHaHbascF-BMVXCtaW_mRjxuuoYA83ffFg9hCVpT3NoJqvO2Pc4O8kiFBdtwSn4ijA0a2nx9AxZdNYfYZzkBbewHgw1MUoiGLdNU7__Nq-0OeYewc2LOdUNiMNnvPO-pd2JpGwmcexIZxMsuDOMdSZBtaPhUhoqArSK2lsgXGJmxVP2oywFUhUzMdkuPed0mi0TwgVl1P8mFngwZQK4p1FZX9i6SHWkN_dlZc4IUBNljfhwbfSuOetppWKFwNYiYT4qa0y5YSK9Lz8lNK32uqbuuJfz6z20_jJP2H--xQXADuMI3slGA
+    spark.kubernetes.driverEnv.SPARK_USER: imguru
+    spark.kubernetes.executorEnv.SPARK_USER: imguru
+    spark.mapr.user.secret: hpe-autotix-generated-secret-nlpcli
+    spark.mapr.user.secret.autogen: "true"
+  sparkVersion: 3.4.0
+  type: Python
+  volumes:
+    - name: sparkhs-eventlog-storage
+      persistentVolumeClaim:
+        claimName: sparkhs-pvc
+    - name: imguru-volume
+      persistentVolumeClaim:
+        claimName: imguru-spark-pvc
+    - name: shared-volume
+      persistentVolumeClaim:
+        claimName: kubeflow-shared-pvc
+status:
+  applicationState:
+    state: RUNNING
+  driverInfo:
+    podName: t0-table-driver
+  executionAttempts: 1
+  executorState:
+    parquet-to-mysql-a86f098a6dfd8ecd-exec-1: RUNNING
+  sparkApplicationId: spark-286f985167b54cc9848dd545f094b3b0
+  submissionAttempts: 1
+  submissionID: 677a7f3a-3d93-4ca2-b739-7a5c9fc82603
+  submissionTime: 2023-09-07T04:52:55Z
+  terminationTime: null
