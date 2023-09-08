@@ -1,15 +1,8 @@
 apiVersion: sparkoperator.hpe.com/v1beta2
 kind: SparkApplication
 metadata:
-  creationTimestamp: 2023-09-08T01:05:22Z
-  generation: 1
-  labels:
-    hpe-ezua/app: spark
-    hpe-ezua/type: app-service-user
   name: test-imguru-t0-cutomer-test
   namespace: spark
-  resourceVersion: "6159661"
-  uid: a6557469-995d-473d-a0b2-79ca9d721774
 spec:
   driver:
     coreLimit: "1"
