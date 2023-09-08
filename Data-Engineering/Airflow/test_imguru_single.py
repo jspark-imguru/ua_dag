@@ -15,7 +15,7 @@ default_args = {
 }
 
 dag = DAG(
-    'test_imguru',
+    'test_imguru_single',
     default_args=default_args,
     schedule_interval=None,
     tags=['imguru', 'spark'],
