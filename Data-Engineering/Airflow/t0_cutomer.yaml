@@ -67,16 +67,3 @@ spec:
     - name: sparkhs-eventlog-storage
       persistentVolumeClaim:
         claimName: sparkhs-pvc
-status:
-  applicationState:
-    state: COMPLETED
-  driverInfo:
-    podName: t0-cutomer-test-driver
-  executionAttempts: 1
-  executorState:
-    parquet-to-mysql-customer-test-07bf1c8a725516ba-exec-1: COMPLETED
-  sparkApplicationId: spark-db77da1171d4499593d9bf6572325941
-  submissionAttempts: 1
-  submissionID: b5e6b2ae-7d02-435c-ad41-77a62ea97b34
-  submissionTime: 2023-09-08T01:07:06Z
-  terminationTime: 2023-09-08T01:10:14Z

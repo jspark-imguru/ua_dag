@@ -69,17 +69,3 @@ spec:
     - name: shared-volume
       persistentVolumeClaim:
         claimName: kubeflow-shared-pvc
-status:
-  applicationState:
-    state: COMPLETED
-  driverInfo:
-    podName: t0-orders-test-driver
-  executionAttempts: 1
-  executorState:
-    parquet-to-mysql-orders-test-a2a0968a727f95fd-exec-1: COMPLETED
-    parquet-to-mysql-orders-test-a2a0968a727f95fd-exec-2: COMPLETED
-  sparkApplicationId: spark-5b22b988065e4b8ba2674c1b8e02afbd
-  submissionAttempts: 1
-  submissionID: 98a37a9a-9c5c-42de-bbac-d7f8d1d3056e
-  submissionTime: 2023-09-08T01:53:29Z
-  terminationTime: 2023-09-08T01:59:28Z
