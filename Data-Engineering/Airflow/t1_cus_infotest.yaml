@@ -6,7 +6,7 @@ metadata:
   labels:
     hpe-ezua/app: spark
     hpe-ezua/type: app-service-user
-  name: test_imguru-t1-cus-info-test
+  name: test-imguru-t1-cus-info-test
   namespace: spark
   resourceVersion: "6175641"
   uid: 98d6774b-115d-45d1-9cb3-d3f50bb07b72
