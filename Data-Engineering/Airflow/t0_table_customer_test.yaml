@@ -6,7 +6,7 @@ metadata:
   labels:
     hpe-ezua/app: spark
     hpe-ezua/type: app-service-user
-  name: t0-cutomer-test
+  name: test_imguru-t0-cutomer-test
   namespace: spark
   resourceVersion: "6159661"
   uid: a6557469-995d-473d-a0b2-79ca9d721774

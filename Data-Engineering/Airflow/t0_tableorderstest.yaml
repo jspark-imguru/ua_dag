@@ -8,7 +8,7 @@ metadata:
   labels:
     hpe-ezua/app: spark
     hpe-ezua/type: app-service-user
-  name: t0-orders-test
+  name: test_imguru-t0-orders-test
   namespace: spark
   resourceVersion: "6204513"
   uid: 0cc42147-0587-4084-bc92-e3b0191fbda2
