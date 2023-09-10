@@ -1,15 +1,12 @@
 apiVersion: sparkoperator.hpe.com/v1beta2
 kind: SparkApplication
 metadata:
-  creationTimestamp: 2023-09-08T10:40:17Z
   generation: 1
   labels:
     hpe-ezua/app: spark
     hpe-ezua/type: app-service-user
   name: create-t2-cus-orders-test
   namespace: spark
-  resourceVersion: "6679542"
-  uid: a4e85bf4-3127-43b3-ad2a-75f5fae05bc7
 spec:
   driver:
     coreLimit: "1"
