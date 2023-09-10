@@ -5,7 +5,7 @@ metadata:
   labels:
     hpe-ezua/app: spark
     hpe-ezua/type: app-service-user
-  name: t2-cust-run
+  name: t2-cust-init
   namespace: spark
 spec:
   driver:
