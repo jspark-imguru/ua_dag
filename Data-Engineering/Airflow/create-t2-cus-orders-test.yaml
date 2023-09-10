@@ -67,16 +67,3 @@ spec:
     - name: sparkhs-eventlog-storage
       persistentVolumeClaim:
         claimName: sparkhs-pvc
-status:
-  applicationState:
-    state: COMPLETED
-  driverInfo:
-    podName: create-t2-cus-orders-test-driver
-  executionAttempts: 1
-  executorState:
-    create-t2-cus-orders-test-9dcf658a746385e2-exec-1: COMPLETED
-  sparkApplicationId: spark-f0293a5791934b0a89e805ad6dcf961f
-  submissionAttempts: 1
-  submissionID: 2a803bcb-64bd-46d7-98e2-9041ba0f07e5
-  submissionTime: 2023-09-08T10:42:01Z
-  terminationTime: 2023-09-08T10:44:22Z
