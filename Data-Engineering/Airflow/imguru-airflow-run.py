@@ -15,51 +15,32 @@ default_args = {
 }
 
 dag = DAG(
-    'test_imguru',
+    'imguru-airflow-run',
     default_args=default_args,
     schedule_interval=None,
-    tags=['imguru', 'spark'],
+    tags=['imguru', 'spark', 'POC'],
     params={
         'airgap_registry_url': Param("", type=["null", "string"], pattern=r"^$|^\S+/$")
     },
     render_template_as_native_obj=True
 )
 
-t0_customer_store = SparkKubernetesOperator(
-    task_id='t0_customer_store',
+t1_cus_info_test = SparkKubernetesOperator(
+    task_id='t1-cus-info-test',
     namespace="spark",
-    application_file="t0_customer.yaml",
+    application_file="create-t1-cus-info-test.yaml",
     dag=dag,
     api_group="sparkoperator.hpe.com",
     enable_impersonation_from_ldap_user=True    
 )
 
-t0_salehistory_store = SparkKubernetesOperator(
-    task_id='t0_salehistory_store',
+t2_cus_orders_test = SparkKubernetesOperator(
+    task_id='t2-cus-orders-test',
     namespace="spark",
-    application_file="t0_salehistory.yaml",
+    application_file="create-t2-cus-orders-test.yaml",
     dag=dag,
     api_group="sparkoperator.hpe.com",
     enable_impersonation_from_ldap_user=True    
-)
+) 
 
-t1_customer_transform = SparkKubernetesOperator(
-    task_id='t1_customer_transform',
-    namespace="spark",
-    application_file="t1_transform.yaml",
-    dag=dag,
-    api_group="sparkoperator.hpe.com",
-    enable_impersonation_from_ldap_user=True    
-)
-
-t2_data_merge = SparkKubernetesOperator(
-    task_id='t2_data_merge',
-    namespace="spark",
-    application_file="t2_datamerge.yaml",
-    dag=dag,
-    api_group="sparkoperator.hpe.com",
-    enable_impersonation_from_ldap_user=True    
-)
-
-t0_customer_store >> t1_customer_transform >> t2_data_merge
-t0_salehistory_store >> t2_data_merge
+t1_cus_info_test >> t2_cus_orders_test
