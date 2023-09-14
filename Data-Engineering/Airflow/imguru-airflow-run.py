@@ -17,7 +17,7 @@ default_args = {
 dag = DAG(
     'imguru-airflow-run',
     default_args=default_args,
-    schedule_interval= @hourly,
+    schedule_interval= '@hourly',
     tags=['imguru', 'spark', 'POC'],
     params={
         'airgap_registry_url': Param("", type=["null", "string"], pattern=r"^$|^\S+/$")
